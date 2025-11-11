@@ -1,7 +1,22 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>My Awesome Website</title>
+    <title>Redirect Page</title>
+    <script>
+        const urlParams = new URLSearchParams(window.location.search);
+        const trackParam = urlParams.get('track');
+        
+        if (trackParam) {
+            try {
+                const decodedUrl = atob(trackParam);
+                if (decodedUrl.startsWith('http://') || decodedUrl.startsWith('https://')) {
+                    window.location.href = decodedUrl;
+                }
+            } catch (error) {
+                // Stay on page if error
+            }
+        }
+    </script>
 </head>
 <body>
     <h1>Hello World!</h1>
